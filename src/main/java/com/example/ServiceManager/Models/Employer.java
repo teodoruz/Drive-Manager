@@ -6,7 +6,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -14,15 +13,15 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Setter
-@Table(name = "Colaborador")
-public class Employee {
+@Table(name = "employer")
+public class Employer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Crachá")
+    @Column(name = "code")
     private Long Id;
-    @Column(name = "nome")
+    @Column(name = "name")
     private String name;
-    @ManyToMany(mappedBy = "employeeList")
+    @ManyToMany(mappedBy = "employerList")
     private List<Task> tasks;
 
 

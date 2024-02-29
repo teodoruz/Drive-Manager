@@ -15,25 +15,19 @@ public class TaskController {
     @Autowired
     public TaskService taskService;
 
-    @GetMapping(value = "findAllT")
-    public List<Task> allTasks() {
-        return taskService.allTasks();
+    @GetMapping
+    public List<Task> findAll() {
+        return taskService.findAll();
     }
 
-
-    @PostMapping(value = "/postTask")
-    public Task postNewTask(@RequestBody Task task) {
-        return taskService.postNewTask(task);
+    @PostMapping
+    public Task insert(@RequestBody Task task) {
+        return taskService.insert(task);
     }
 
-//    @GetMapping("/return/{id}")
-//    public Task findTAsById(@RequestParam Long id){
-//        Task tasks = taskService.findTaskById(id);
-//        return tasks;
-//    }
-    @GetMapping("/find/{idTask}")
-    public ResponseEntity<Task> findTaskById(@PathVariable Long idTask){
-        Task result = taskService.findTaskById(idTask);
+    @GetMapping
+    public ResponseEntity<Task> findById(@PathVariable Long idTask) {
+        Task result = taskService.findById(idTask);
         return ResponseEntity.ok().body(result);
     }
 }
