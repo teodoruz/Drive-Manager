@@ -1,5 +1,6 @@
 package com.example.ServiceManager.Models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -22,6 +23,7 @@ public class Employer {
     @Column(name = "name")
     private String name;
     @ManyToMany(mappedBy = "employerList")
+    @JsonIgnore
     private List<Task> tasks;
 
 
