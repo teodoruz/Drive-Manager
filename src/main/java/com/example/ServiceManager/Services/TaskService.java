@@ -5,6 +5,7 @@ import com.example.ServiceManager.Models.Employer;
 import com.example.ServiceManager.Models.Task;
 import com.example.ServiceManager.Repository.EmployerRepository;
 import com.example.ServiceManager.Repository.TaskRepository;
+import com.example.ServiceManager.Services.Exceptions.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -22,7 +23,8 @@ public class TaskService {
     public EmployerRepository employerRepository;
 
     public List<Task> findAll(){
-        return taskRepository.findAll();
+        List<Task> tsks = taskRepository.findAll();
+        return tsks;
     }
 
     public Task insert(@RequestBody TaskDTO taskDTO){
@@ -34,7 +36,7 @@ public class TaskService {
         return taskRepository.save(task);
     }
     public Task findById(Long id){
-        Task resultTaks = taskRepository.findById(id).get();
+        Task resultTaks = taskRepository.findById(id).orElseThrow(() -> new EntityNotFoundException(id + "não encontrado"));
         return resultTaks;
     }
 }

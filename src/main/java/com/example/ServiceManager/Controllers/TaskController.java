@@ -18,7 +18,8 @@ public class TaskController {
 
     @GetMapping
     public List<Task> findAll() {
-        return taskService.findAll();
+        List<Task> result = taskService.findAll();
+        return result;
     }
 
     @PostMapping
@@ -27,7 +28,7 @@ public class TaskController {
         return ResponseEntity.ok(tsk);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/{idTask}")
     public ResponseEntity<Task> findById(@PathVariable Long idTask) {
         Task result = taskService.findById(idTask);
         return ResponseEntity.ok().body(result);
