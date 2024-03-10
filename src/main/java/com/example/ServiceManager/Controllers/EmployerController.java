@@ -16,7 +16,7 @@ public class EmployerController {
     public EmployerService employerService;
 
     @PostMapping
-    public Employer insert(@RequestBody Employer employer){
+    public Employer insert(@RequestBody Employer employer) throws IllegalAccessException {
         return employerService.insert(employer);
     }
 

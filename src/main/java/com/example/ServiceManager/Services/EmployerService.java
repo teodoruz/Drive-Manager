@@ -2,6 +2,7 @@ package com.example.ServiceManager.Services;
 
 import com.example.ServiceManager.Models.Employer;
 import com.example.ServiceManager.Repository.EmployerRepository;
+import com.example.ServiceManager.Services.Exceptions.EmployeeNameAlreadyExists;
 import com.example.ServiceManager.Services.Exceptions.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,7 +18,10 @@ public class EmployerService {
     public EmployerRepository employerRepository;
 
 
-    public Employer insert(@RequestBody Employer employer) {
+    public Employer insert(@RequestBody Employer employer) throws IllegalAccessException {
+        if (employerRepository.existsByName(employer.getName())){
+            throw new EmployeeNameAlreadyExists("funcionario ja existe");
+        }
         return employerRepository.save(employer);
     }
 
