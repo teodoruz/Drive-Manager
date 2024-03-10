@@ -22,7 +22,11 @@ public class EmployerService {
     }
 
     public List<Employer> findAll() {
-        return employerRepository.findAll();
+        List<Employer> employer = employerRepository.findAll();
+        if(employer.isEmpty()){
+            throw new EntityNotFoundException("the list is empty");
+        }
+        return employer;
     }
 
     public Employer findById(Long id) {

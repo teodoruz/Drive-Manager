@@ -24,6 +24,9 @@ public class TaskService {
 
     public List<Task> findAll(){
         List<Task> tsks = taskRepository.findAll();
+        if(tsks.isEmpty()){
+            throw new EntityNotFoundException("the list is empty");
+        }
         return tsks;
     }
 
