@@ -25,7 +25,6 @@ public class Task {
     inverseJoinColumns = @JoinColumn(name = "employer_id"))
     @Column(name = "employers")
     private List<Employer> employerList;
-
-
-
+    @ManyToOne
+    private Sector sector;
 }

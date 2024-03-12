@@ -6,3 +6,4 @@ public class EmployeeNameAlreadyExists extends RuntimeException{
         super(msg);
     }
 }
+
