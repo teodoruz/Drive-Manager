@@ -26,7 +26,7 @@ public class EmployerController {
     }
     @GetMapping("/{idEmployer}")
     public ResponseEntity<Employer> findById(@PathVariable Long idEmployer){
-        Employer resultEmployer = employerService.findById(idEmployer);
-        return ResponseEntity.ok().body(resultEmployer);
+        return employerService.findById(idEmployer);
+
     }
 }

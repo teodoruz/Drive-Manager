@@ -5,6 +5,7 @@ import com.example.ServiceManager.Repository.EmployerRepository;
 import com.example.ServiceManager.Services.Exceptions.EmployeeNameAlreadyExists;
 import com.example.ServiceManager.Services.Exceptions.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -33,8 +34,13 @@ public class EmployerService {
         return employer;
     }
 
-    public Employer findById(Long id) {
-        return employerRepository.findById(id).orElseThrow(() -> new EntityNotFoundException( id + "not found" ));
+    public ResponseEntity<Employer> findById(Long id) {
+        return employerRepository.findById(id)
+                .map(employer -> ResponseEntity.ok()
+                .body(employer)).orElse(ResponseEntity.notFound().build());
+    }
+    public ResponseEntity<Employer> findByName(String name){
+        return null;
     }
 
 
