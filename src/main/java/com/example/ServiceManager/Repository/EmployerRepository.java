@@ -10,7 +10,6 @@ public interface EmployerRepository extends JpaRepository<Employer, Long> {
 
     boolean existsByName(String name);
 
-    @Query
-    Optional<?> findByName()
+
 
 }
