@@ -1,9 +1,6 @@
 package com.example.ServiceManager.Models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,6 +15,8 @@ public class Item {
     @Id
     private Long Id;
     private String title;
-    private Double value;
+    @ManyToOne
+    @JoinColumn(name = "budget_id")
+    private Budget budget;
 
 }

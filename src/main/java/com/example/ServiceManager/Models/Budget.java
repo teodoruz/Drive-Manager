@@ -1,9 +1,8 @@
 package com.example.ServiceManager.Models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 
@@ -12,6 +11,7 @@ public class Budget {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
     private Double value;
-
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "budget")
+    private List<Item> itemList;
 
 }
