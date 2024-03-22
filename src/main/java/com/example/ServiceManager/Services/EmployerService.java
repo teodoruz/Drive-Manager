@@ -1,6 +1,6 @@
 package com.example.ServiceManager.Services;
 
-import com.example.ServiceManager.Models.Employer;
+import com.example.ServiceManager.Models.Employee;
 import com.example.ServiceManager.Repository.EmployerRepository;
 import com.example.ServiceManager.Services.Exceptions.EmployeeNameAlreadyExists;
 import com.example.ServiceManager.Services.Exceptions.EntityNotFoundException;
@@ -19,27 +19,27 @@ public class EmployerService {
     public EmployerRepository employerRepository;
 
 
-    public Employer insert(@RequestBody Employer employer) throws IllegalAccessException {
-        if (employerRepository.existsByName(employer.getName())){
+    public Employee insert(@RequestBody Employee employee) throws IllegalAccessException {
+        if (employerRepository.existsByName(employee.getName())){
             throw new EmployeeNameAlreadyExists("funcionario ja existe");
         }
-        return employerRepository.save(employer);
+        return employerRepository.save(employee);
     }
 
-    public List<Employer> findAll() {
-        List<Employer> employer = employerRepository.findAll();
-        if(employer.isEmpty()){
+    public List<Employee> findAll() {
+        List<Employee> employee = employerRepository.findAll();
+        if(employee.isEmpty()){
             throw new EntityNotFoundException("the list is empty");
         }
-        return employer;
+        return employee;
     }
 
-    public ResponseEntity<Employer> findById(Long id) {
+    public ResponseEntity<Employee> findById(Long id) {
         return employerRepository.findById(id)
                 .map(employer -> ResponseEntity.ok()
                 .body(employer)).orElse(ResponseEntity.notFound().build());
     }
-    public ResponseEntity<Employer> findByName(String name){
+    public ResponseEntity<Employee> findByName(String name){
         return null;
     }
 

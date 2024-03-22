@@ -1,6 +1,6 @@
 package com.example.ServiceManager.Controllers;
 
-import com.example.ServiceManager.Models.Employer;
+import com.example.ServiceManager.Models.Employee;
 import com.example.ServiceManager.Services.EmployerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,16 +16,16 @@ public class EmployerController {
     public EmployerService employerService;
 
     @PostMapping
-    public Employer insert(@RequestBody Employer employer) throws IllegalAccessException {
-        return employerService.insert(employer);
+    public Employee insert(@RequestBody Employee employee) throws IllegalAccessException {
+        return employerService.insert(employee);
     }
 
     @GetMapping
-    public List<Employer> findAll(){
+    public List<Employee> findAll(){
         return employerService.findAll();
     }
     @GetMapping("/{idEmployer}")
-    public ResponseEntity<Employer> findById(@PathVariable Long idEmployer){
+    public ResponseEntity<Employee> findById(@PathVariable Long idEmployer){
         return employerService.findById(idEmployer);
 
     }

@@ -11,7 +11,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Sector {
+public class CostCenter {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Cost Center")

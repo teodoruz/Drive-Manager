@@ -1,6 +1,5 @@
 package com.example.ServiceManager.Models.DTOs;
 
-import com.example.ServiceManager.Models.Employer;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

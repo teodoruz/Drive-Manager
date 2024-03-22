@@ -24,7 +24,7 @@ public class Task {
     @JoinTable(name = "employer_task", joinColumns = @JoinColumn(name = "task_id"),
     inverseJoinColumns = @JoinColumn(name = "employer_id"))
     @Column(name = "employers")
-    private List<Employer> employerList;
+    private List<Employee> employeeList;
     @ManyToOne
-    private Sector sector;
+    private CostCenter costCenter;
 }

@@ -1,12 +1,9 @@
 package com.example.ServiceManager.Repository;
 
-import com.example.ServiceManager.Models.Employer;
+import com.example.ServiceManager.Models.Employee;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 
-import java.util.Optional;
-
-public interface EmployerRepository extends JpaRepository<Employer, Long> {
+public interface EmployerRepository extends JpaRepository<Employee, Long> {
 
     boolean existsByName(String name);
 
