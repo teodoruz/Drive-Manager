@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class SectorDTO {
+public class CostCenterDTO {
     private Long Id;
     private String sectorName;
 }
