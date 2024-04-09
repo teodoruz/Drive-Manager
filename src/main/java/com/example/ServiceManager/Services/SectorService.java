@@ -1,6 +1,7 @@
 package com.example.ServiceManager.Services;
 
 import com.example.ServiceManager.Models.DTOs.SectorDTO;
+import com.example.ServiceManager.Models.Employee;
 import com.example.ServiceManager.Models.Sector;
 import com.example.ServiceManager.Repository.SectorRespository;
 import com.example.ServiceManager.Services.Exceptions.EntityNotFoundException;
@@ -49,7 +50,11 @@ public class SectorService {
         }else {
             throw new EntityNotFoundException("Entity not exist");
         }
+    }
 
+    public List<Sector> findBySectorName(String sectorName) {
+        List<Sector> sct = sectorRespository.findBySectorNameContaining(sectorName);
+        return sct;
     }
 
 }

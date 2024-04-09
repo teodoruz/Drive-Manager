@@ -38,4 +38,8 @@ public class SectorController {
 
         return sectorService.deleteSector(idSector);
     }
+    @GetMapping("/find")
+    public List<Sector> findSectorByName(@RequestParam String name){
+        return sectorService.findBySectorName(name);
+    }
 }
