@@ -15,8 +15,4 @@ public class Item {
     @Id
     private Long Id;
     private String title;
-    @ManyToOne
-    @JoinColumn(name = "budget_id")
-    private Budget budget;
-
 }

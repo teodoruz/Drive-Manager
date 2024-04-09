@@ -1,7 +1,7 @@
 package com.example.ServiceManager.Controllers;
 
 import com.example.ServiceManager.Models.DTOs.SectorDTO;
-import com.example.ServiceManager.Models.CostCenter;
+import com.example.ServiceManager.Models.Sector;
 import com.example.ServiceManager.Services.SectorService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,25 +15,27 @@ public class SectorController {
     private final SectorService sectorService;
 
     public SectorController(SectorService sectorService) {
+
         this.sectorService = sectorService;
     }
 
     @GetMapping("/{idSector}")
-    public ResponseEntity<CostCenter> findById(@PathVariable Long idSector){
+    public ResponseEntity<Sector> findById(@PathVariable Long idSector){
         return sectorService.FindById(idSector);
     }
     @GetMapping
-    public List<CostCenter> findAll(){
-        List<CostCenter> costCenterList = sectorService.findAll();
+    public List<Sector> findAll(){
+        List<Sector> costCenterList = sectorService.findAll();
         return costCenterList;
     }
     @PostMapping
-    public CostCenter epostSector(@RequestBody SectorDTO sectorDTO){
-        CostCenter costCenter = sectorService.postSector(sectorDTO);
+    public Sector epostSector(@RequestBody SectorDTO sectorDTO){
+        Sector costCenter = sectorService.postSector(sectorDTO);
         return costCenter;
     }
     @PutMapping("/{idSector}")
-    public CostCenter putSector(@PathVariable Long idSector){
+    public Sector putSector(@PathVariable Long idSector){
+
         return sectorService.deleteSector(idSector);
     }
 }

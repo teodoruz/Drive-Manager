@@ -1,5 +1,6 @@
 package com.example.ServiceManager.Models.DTOs;
 
+import com.example.ServiceManager.Models.Sector;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,6 +15,7 @@ public class TaskDTO {
     private Long Id;
     private String activity;
     private List<Long> employersIds;
+    private Long costCenter;
 
 
 

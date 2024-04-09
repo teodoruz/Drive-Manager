@@ -1,16 +1,22 @@
 package com.example.ServiceManager.Services;
 
+import com.example.ServiceManager.Models.DTOs.SectorDTO;
 import com.example.ServiceManager.Models.DTOs.TaskDTO;
 import com.example.ServiceManager.Models.Employee;
+import com.example.ServiceManager.Models.Sector;
 import com.example.ServiceManager.Models.Task;
 import com.example.ServiceManager.Repository.EmployerRepository;
+import com.example.ServiceManager.Repository.SectorRespository;
 import com.example.ServiceManager.Repository.TaskRepository;
+import com.example.ServiceManager.Services.Exceptions.EmployeeListIsNull;
 import com.example.ServiceManager.Services.Exceptions.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TaskService {
@@ -19,6 +25,8 @@ public class TaskService {
     public TaskRepository taskRepository;
     @Autowired
     public EmployerRepository employerRepository;
+    @Autowired
+    private SectorRespository sectorRespository;
 
     public List<Task> findAll(){
         List<Task> tsks = taskRepository.findAll();
@@ -28,16 +36,33 @@ public class TaskService {
         return tsks;
     }
 
-    public Task insert(@RequestBody TaskDTO taskDTO){
+    public Task insert(@RequestBody TaskDTO taskDTO) throws Exception {
         Task task = new Task();
         task.setId(taskDTO.getId());
         task.setActivity(taskDTO.getActivity());
-        List<Employee> listEmployee = employerRepository.findAllById(taskDTO.getEmployersIds());
-        task.setEmployeeList(listEmployee);
+        List<Long> emp = taskDTO.getEmployersIds();
+        if(emp.isEmpty()){
+            throw new EmployeeListIsNull("The employers list is empty");
+        }else {
+            List<Employee> listEmployee = employerRepository.findAllById(taskDTO.getEmployersIds());
+            if(listEmployee.isEmpty()){
+                throw new EntityNotFoundException("the employers " + emp + " not exist");
+            }
+            task.setEmployeeList(listEmployee);
+        }
+        Long constCenterId = taskDTO.getCostCenter();
+        if(constCenterId == null){
+        throw new EntityNotFoundException("the const center is empty");
+        }else{
+            Optional<Sector> costCenter = sectorRespository.findById(taskDTO.getCostCenter());
+            if(costCenter.isEmpty()){
+                throw new EntityNotFoundException("the cost center " + constCenterId + " not exist");
+            }
+            task.setCostCenter(costCenter.get());
+        }
         return taskRepository.save(task);
     }
     public Task findById(Long id){
-        Task resultTaks = taskRepository.findById(id).orElseThrow(() -> new EntityNotFoundException(id + "não encontrado"));
-        return resultTaks;
+        return taskRepository.findById(id).orElseThrow(() -> new EntityNotFoundException(id + "não encontrado"));
     }
 }

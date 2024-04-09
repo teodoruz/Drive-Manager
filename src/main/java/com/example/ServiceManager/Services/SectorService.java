@@ -1,7 +1,7 @@
 package com.example.ServiceManager.Services;
 
 import com.example.ServiceManager.Models.DTOs.SectorDTO;
-import com.example.ServiceManager.Models.CostCenter;
+import com.example.ServiceManager.Models.Sector;
 import com.example.ServiceManager.Repository.SectorRespository;
 import com.example.ServiceManager.Services.Exceptions.EntityNotFoundException;
 import org.springframework.http.ResponseEntity;
@@ -14,34 +14,35 @@ import java.util.Optional;
 public class SectorService {
     private final SectorRespository sectorRespository;
     public SectorService(SectorRespository sectorRespository){
+
         this.sectorRespository =sectorRespository;
     }
 
-    public ResponseEntity<CostCenter> FindById(Long idSector){
+    public ResponseEntity<Sector> FindById(Long idSector){
     return sectorRespository.findById(idSector)
-            .map(CostCenter -> ResponseEntity
+            .map(Sector -> ResponseEntity
             .ok()
-            .body(CostCenter))
+            .body(Sector))
             .orElse(ResponseEntity.notFound().build());
     }
 
-    public List<CostCenter> findAll(){
-        List<CostCenter> costCenterList = sectorRespository.findAll();
-        if(costCenterList.isEmpty()){
+    public List<Sector> findAll(){
+        List<Sector> SectorList = sectorRespository.findAll();
+        if(SectorList.isEmpty()){
             throw new EntityNotFoundException("list empty");
         }
-        return costCenterList;
+        return SectorList;
     }
 
-    public CostCenter postSector(SectorDTO sectorDTO){
-        CostCenter costCenter = new CostCenter();
+    public Sector postSector(SectorDTO sectorDTO){
+        Sector costCenter = new Sector();
         costCenter.setSectorName(sectorDTO.getSectorName());
         costCenter.setIdSector(sectorDTO.getId());
         return sectorRespository.save(costCenter);
     }
 
-    public CostCenter deleteSector(Long idSector){
-        Optional<CostCenter> sectorOptional = sectorRespository.findById(idSector);
+    public Sector deleteSector(Long idSector){
+        Optional<Sector> sectorOptional = sectorRespository.findById(idSector);
         if(sectorOptional.isPresent()){
             sectorRespository.deleteById(idSector);
             return sectorOptional.get();

@@ -22,7 +22,7 @@ public class Employee {
     private Long Id;
     @Column(name = "name")
     private String name;
-    @ManyToMany(mappedBy = "employerList")
+    @ManyToMany(mappedBy = "employeeList")
     @JsonIgnore
     private List<Task> tasks;
 

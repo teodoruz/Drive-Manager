@@ -26,5 +26,6 @@ public class Task {
     @Column(name = "employers")
     private List<Employee> employeeList;
     @ManyToOne
-    private CostCenter costCenter;
+    @JoinColumn(name = "CostCenterId")
+    private Sector costCenter;
 }

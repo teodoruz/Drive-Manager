@@ -23,7 +23,7 @@ public class TaskController {
     }
 
     @PostMapping
-    public ResponseEntity<Task> insert(@RequestBody TaskDTO taskDTO) {
+    public ResponseEntity<Task> insert(@RequestBody TaskDTO taskDTO) throws Exception {
         Task tsk = taskService.insert(taskDTO);
         return ResponseEntity.ok(tsk);
     }
