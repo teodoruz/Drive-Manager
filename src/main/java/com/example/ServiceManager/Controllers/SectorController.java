@@ -35,7 +35,6 @@ public class SectorController {
     }
     @PutMapping("/{idSector}")
     public Sector putSector(@PathVariable Long idSector){
-
         return sectorService.deleteSector(idSector);
     }
     @GetMapping("/find")

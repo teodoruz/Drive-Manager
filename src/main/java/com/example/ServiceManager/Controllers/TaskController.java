@@ -13,8 +13,11 @@ import java.util.List;
 @RequestMapping("/tasks")
 public class TaskController {
 
-    @Autowired
-    public TaskService taskService;
+    private final TaskService taskService;
+
+    public TaskController(TaskService taskService) {
+        this.taskService = taskService;
+    }
 
     @GetMapping
     public List<Task> findAll() {
@@ -32,6 +35,10 @@ public class TaskController {
     public ResponseEntity<Task> findById(@PathVariable Long idTask) {
         Task result = taskService.findById(idTask);
         return ResponseEntity.ok().body(result);
+    }
+    @GetMapping("/find")
+    public List<Task> findTaskByName(@RequestParam String keyboard) {
+        return taskService.findByTaskName(keyboard);
     }
 
 

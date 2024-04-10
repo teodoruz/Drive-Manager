@@ -4,6 +4,7 @@ import com.example.ServiceManager.Models.DTOs.SectorDTO;
 import com.example.ServiceManager.Models.Employee;
 import com.example.ServiceManager.Models.Sector;
 import com.example.ServiceManager.Repository.SectorRespository;
+import com.example.ServiceManager.Services.Exceptions.EmptyEntityError;
 import com.example.ServiceManager.Services.Exceptions.EntityNotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -13,9 +14,10 @@ import java.util.Optional;
 
 @Service
 public class SectorService {
-    private final SectorRespository sectorRespository;
-    public SectorService(SectorRespository sectorRespository){
 
+    private final SectorRespository sectorRespository;
+
+    public SectorService(SectorRespository sectorRespository){
         this.sectorRespository =sectorRespository;
     }
 
@@ -36,10 +38,14 @@ public class SectorService {
     }
 
     public Sector postSector(SectorDTO sectorDTO){
+        if(sectorDTO.getSectorName().isEmpty()){
+            throw new EmptyEntityError("the sector field is empty");
+        }else {
         Sector costCenter = new Sector();
         costCenter.setSectorName(sectorDTO.getSectorName());
         costCenter.setIdSector(sectorDTO.getId());
         return sectorRespository.save(costCenter);
+            }
     }
 
     public Sector deleteSector(Long idSector){

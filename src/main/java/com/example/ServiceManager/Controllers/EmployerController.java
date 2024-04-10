@@ -12,8 +12,11 @@ import java.util.List;
 @RequestMapping(path = "/employers")
 public class EmployerController {
 
-    @Autowired
-    public EmployerService employerService;
+    private final EmployerService employerService;
+
+    public EmployerController(EmployerService employerService) {
+        this.employerService = employerService;
+    }
 
     @PostMapping
     public Employee insert(@RequestBody Employee employee) throws IllegalAccessException {

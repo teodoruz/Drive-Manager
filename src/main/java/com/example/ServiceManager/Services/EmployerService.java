@@ -15,8 +15,11 @@ import java.util.List;
 @Service
 public class EmployerService {
 
-    @Autowired
-    public EmployerRepository employerRepository;
+    private final EmployerRepository employerRepository;
+
+    public EmployerService(EmployerRepository employerRepository){
+        this.employerRepository = employerRepository;
+    }
 
 
     public Employee insert(@RequestBody Employee employee) throws IllegalAccessException {

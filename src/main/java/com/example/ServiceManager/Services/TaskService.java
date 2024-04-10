@@ -21,12 +21,17 @@ import java.util.Optional;
 @Service
 public class TaskService {
 
-    @Autowired
-    public TaskRepository taskRepository;
-    @Autowired
-    public EmployerRepository employerRepository;
-    @Autowired
-    private SectorRespository sectorRespository;
+    private final TaskRepository taskRepository;
+    private final EmployerRepository employerRepository;
+    private final SectorRespository sectorRepository;
+
+    public TaskService(TaskRepository taskRepository, EmployerRepository employeerRepository, SectorRespository sectorRepository) {
+        this.taskRepository = taskRepository;
+        this.employerRepository = employeerRepository;
+        this.sectorRepository = sectorRepository;
+    }
+
+
 
     public List<Task> findAll(){
         List<Task> tsks = taskRepository.findAll();
@@ -54,7 +59,7 @@ public class TaskService {
         if(constCenterId == null){
         throw new EntityNotFoundException("the const center is empty");
         }else{
-            Optional<Sector> costCenter = sectorRespository.findById(taskDTO.getCostCenter());
+            Optional<Sector> costCenter = sectorRepository.findById(taskDTO.getCostCenter());
             if(costCenter.isEmpty()){
                 throw new EntityNotFoundException("the cost center " + constCenterId + " not exist");
             }
@@ -64,5 +69,14 @@ public class TaskService {
     }
     public Task findById(Long id){
         return taskRepository.findById(id).orElseThrow(() -> new EntityNotFoundException(id + "não encontrado"));
+    }
+
+    public List<Task> findByTaskName(String keyboard){
+        List<Task> taskByKey = taskRepository.findByActivityContaining(keyboard);
+        if(taskByKey.isEmpty()){
+            throw new EntityNotFoundException("the keyboard " + keyboard + " not exist");
+        }else{
+            return taskByKey;
+        }
     }
 }
