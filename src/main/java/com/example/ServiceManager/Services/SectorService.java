@@ -33,8 +33,10 @@ public class SectorService {
         List<Sector> SectorList = sectorRespository.findAll();
         if(SectorList.isEmpty()){
             throw new EntityNotFoundException("list empty");
+        }else{
+            return SectorList;
         }
-        return SectorList;
+
     }
 
     public Sector postSector(SectorDTO sectorDTO){
@@ -59,8 +61,12 @@ public class SectorService {
     }
 
     public List<Sector> findBySectorName(String sectorName) {
-        List<Sector> sct = sectorRespository.findBySectorNameContaining(sectorName);
-        return sct;
+        List<Sector> sectorList = sectorRespository.findBySectorNameContaining(sectorName);
+        if(sectorList.isEmpty()){
+            throw new EntityNotFoundException("list empty");
+        }else{
+            return sectorList;
+        }
     }
 
 }
