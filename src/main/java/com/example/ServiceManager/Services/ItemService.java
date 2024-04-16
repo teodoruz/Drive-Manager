@@ -42,6 +42,20 @@ public class ItemService {
     }
 
     public void deleteItemById(Long id){
-        itemRepository.deleteById(id);
+        ResponseEntity<Item> excludeItem = this.getItemById(id);
+        if(excludeItem == null){
+            throw new EntityNotFoundException("the Id" + id + "not found");
+        }else {
+            itemRepository.deleteById(id);
+        }
+    }
+    public ResponseEntity<List<Item>> findItemByName(String keyword){
+        List<Item> itemList = itemRepository.findByTitle(keyword);
+        if(itemList.isEmpty()){
+            throw new EntityNotFoundException("the keyword" + keyword + "not found");
+        }else {
+            return new ResponseEntity<>(itemList, HttpStatus.OK);
+        }
+
     }
 }

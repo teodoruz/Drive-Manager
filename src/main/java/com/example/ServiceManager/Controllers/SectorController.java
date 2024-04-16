@@ -21,11 +21,12 @@ public class SectorController {
 
     @GetMapping("/{idSector}")
     public ResponseEntity<Sector> findById(@PathVariable Long idSector){
+
         return sectorService.FindById(idSector);
     }
     @GetMapping
-    public List<Sector> findAll(){
-        List<Sector> costCenterList = sectorService.findAll();
+    public ResponseEntity<List<Sector>> findAll(){
+        ResponseEntity<List<Sector>> costCenterList = sectorService.findAll();
         return costCenterList;
     }
     @PostMapping

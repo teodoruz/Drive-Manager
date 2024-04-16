@@ -6,6 +6,7 @@ import com.example.ServiceManager.Models.Sector;
 import com.example.ServiceManager.Repository.SectorRespository;
 import com.example.ServiceManager.Services.Exceptions.EmptyEntityError;
 import com.example.ServiceManager.Services.Exceptions.EntityNotFoundException;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -29,12 +30,12 @@ public class SectorService {
             .orElse(ResponseEntity.notFound().build());
     }
 
-    public List<Sector> findAll(){
+    public ResponseEntity<List<Sector>> findAll(){
         List<Sector> SectorList = sectorRespository.findAll();
         if(SectorList.isEmpty()){
             throw new EntityNotFoundException("list empty");
         }else{
-            return SectorList;
+            return new ResponseEntity<>(SectorList, HttpStatus.OK);
         }
 
     }
