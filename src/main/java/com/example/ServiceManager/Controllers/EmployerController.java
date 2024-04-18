@@ -1,5 +1,6 @@
 package com.example.ServiceManager.Controllers;
 
+import com.example.ServiceManager.Models.DTOs.EmployerDTO;
 import com.example.ServiceManager.Models.Employee;
 import com.example.ServiceManager.Services.EmployerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +20,8 @@ public class EmployerController {
     }
 
     @PostMapping
-    public Employee insert(@RequestBody Employee employee) throws IllegalAccessException {
-        return employerService.insert(employee);
+    public Employee insert(@RequestBody EmployerDTO employerDTO) throws IllegalAccessException {
+        return employerService.insert(employerDTO);
     }
 
     @GetMapping

@@ -1,4 +1,4 @@
-package com.example.ServiceManager.Services.Exceptions;
+package com.example.ServiceManager.Models.Exceptions;
 
 public class EmployeeListIsNull extends Exception {
     public EmployeeListIsNull(String message) {

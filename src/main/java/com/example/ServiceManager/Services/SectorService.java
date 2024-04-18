@@ -1,11 +1,10 @@
 package com.example.ServiceManager.Services;
 
 import com.example.ServiceManager.Models.DTOs.SectorDTO;
-import com.example.ServiceManager.Models.Employee;
 import com.example.ServiceManager.Models.Sector;
 import com.example.ServiceManager.Repository.SectorRespository;
-import com.example.ServiceManager.Services.Exceptions.EmptyEntityError;
-import com.example.ServiceManager.Services.Exceptions.EntityNotFoundException;
+import com.example.ServiceManager.Models.Exceptions.EmptyEntityError;
+import com.example.ServiceManager.Models.Exceptions.EntityNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;

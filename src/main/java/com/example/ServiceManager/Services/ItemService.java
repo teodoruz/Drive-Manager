@@ -3,12 +3,11 @@ package com.example.ServiceManager.Services;
 import com.example.ServiceManager.Models.DTOs.ItemDTO;
 import com.example.ServiceManager.Models.Item;
 import com.example.ServiceManager.Repository.ItemRepository;
-import com.example.ServiceManager.Services.Exceptions.EmptyEntityError;
-import com.example.ServiceManager.Services.Exceptions.EntityNotFoundException;
+import com.example.ServiceManager.Models.Exceptions.EmptyEntityError;
+import com.example.ServiceManager.Models.Exceptions.EntityNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;

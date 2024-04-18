@@ -1,4 +1,4 @@
-package com.example.ServiceManager.Services.Exceptions;
+package com.example.ServiceManager.Models.Exceptions;
 
 import java.io.Serial;
 

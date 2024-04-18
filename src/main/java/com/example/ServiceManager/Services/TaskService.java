@@ -1,6 +1,5 @@
 package com.example.ServiceManager.Services;
 
-import com.example.ServiceManager.Models.DTOs.SectorDTO;
 import com.example.ServiceManager.Models.DTOs.TaskDTO;
 import com.example.ServiceManager.Models.Employee;
 import com.example.ServiceManager.Models.Sector;
@@ -8,10 +7,8 @@ import com.example.ServiceManager.Models.Task;
 import com.example.ServiceManager.Repository.EmployerRepository;
 import com.example.ServiceManager.Repository.SectorRespository;
 import com.example.ServiceManager.Repository.TaskRepository;
-import com.example.ServiceManager.Services.Exceptions.EmployeeListIsNull;
-import com.example.ServiceManager.Services.Exceptions.EntityNotFoundException;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+import com.example.ServiceManager.Models.Exceptions.EmployeeListIsNull;
+import com.example.ServiceManager.Models.Exceptions.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
