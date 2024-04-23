@@ -2,6 +2,7 @@ package com.example.ServiceManager.Controllers.exceptions;
 
 import com.example.ServiceManager.Models.Exceptions.EmployeeListIsNull;
 import com.example.ServiceManager.Models.Exceptions.EmployeeNameAlreadyExists;
+import com.example.ServiceManager.Models.Exceptions.EmptyEntityError;
 import com.example.ServiceManager.Models.Exceptions.EntityNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
@@ -36,4 +37,13 @@ public class ControllerExceptionHandler {
         StandardError standardError = new StandardError(Instant.now(), error, e.getMessage(), request.getRequestURI(), status.value());
         return ResponseEntity.status(status).body(standardError);
     }
+    @ExceptionHandler(EmptyEntityError.class)
+    public ResponseEntity<StandardError> EmptyEntityError(EmptyEntityError e, HttpServletRequest request){
+    HttpStatus status = HttpStatus.CONFLICT;
+    String error = "database error";
+    StandardError standardError = new StandardError(Instant.now(), error, e.getMessage(),request.getRequestURI(), status.value());
+    return ResponseEntity.status(status).body(standardError);
+    }
+    
+
 }
