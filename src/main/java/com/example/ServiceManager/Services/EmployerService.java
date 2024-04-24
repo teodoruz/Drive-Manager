@@ -31,11 +31,11 @@ public class EmployerService {
             return employerRepository.save(employee);
         }catch (DataIntegrityViolationException e){
             throw new EmployeeNameAlreadyExists("employee name already exists");
-
         }
 
     }
     public void toDTO(EmployerDTO employerDTO, Employee employee) {
+
         employee.setName(employerDTO.getName());
     }
     public List<Employee> findAll() {

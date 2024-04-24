@@ -25,6 +25,7 @@ public class Employee {
     @ManyToMany(mappedBy = "employeeList")
     @JsonIgnore
     private List<Task> tasks;
+    private String phoneNumber;
 
 
 }
