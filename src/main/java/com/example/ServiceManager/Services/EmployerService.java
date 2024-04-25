@@ -29,7 +29,7 @@ public class EmployerService {
        this.toDTO(employerDTO, employee);
         try{
             return employerRepository.save(employee);
-        }catch (DataIntegrityViolationException e){
+        }catch (EmployeeNameAlreadyExists e){
             throw new EmployeeNameAlreadyExists("employee name already exists");
 
         }

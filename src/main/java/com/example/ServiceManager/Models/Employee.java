@@ -20,7 +20,7 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "code")
     private Long Id;
-    @Column(name = "name", unique = true)
+    @Column(name = "name")
     private String name;
     @ManyToMany(mappedBy = "employeeList")
     @JsonIgnore

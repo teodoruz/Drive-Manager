@@ -13,7 +13,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Item {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
     private String title;
+    private Long quantity;
 }

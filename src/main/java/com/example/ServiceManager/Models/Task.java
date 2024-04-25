@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.aspectj.weaver.reflect.IReflectionWorld;
 
 import java.util.List;
 
@@ -28,4 +29,7 @@ public class Task {
     @ManyToOne
     @JoinColumn(name = "CostCenterId")
     private Sector costCenter;
+    @OneToMany
+    @Column(name = "Item")
+    private List<Item> itemList;
 }
