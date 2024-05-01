@@ -27,15 +27,14 @@ public class EmployerService {
     public Employee insert(@RequestBody EmployerDTO employerDTO) {
         Employee employee = new Employee();
        this.toDTO(employerDTO, employee);
-        try{
-            return employerRepository.save(employee);
-        }catch (DataIntegrityViolationException e){
-            throw new EmployeeNameAlreadyExists("employee name already exists");
-        }
+       boolean employee1 = employerRepository.existsByName(employerDTO.getName());
+       if(!employee1){
+           throw new EmployeeNameAlreadyExists("Name exixst in database");
+       }
+       return employerRepository.save(employee);
 
     }
     public void toDTO(EmployerDTO employerDTO, Employee employee) {
-
         employee.setName(employerDTO.getName());
     }
     public List<Employee> findAll() {
